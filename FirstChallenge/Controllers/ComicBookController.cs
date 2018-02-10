@@ -19,18 +19,15 @@ namespace FirstChallenge.Controllers
         }
 
         // GET: ComicBook/Details
-        public ActionResult Details(int? comicBookId)
+        public ActionResult Details(ComicBook comicBook)
         {
-            if(comicBookId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ComicBook comicBook = Models.ComicBookManager.GetComicBooks().Find(p => p.ComicBookId == comicBookId);
             if(comicBook == null)
             {
                 return HttpNotFound();
             }
-            return View(comicBook);
+            
+
+            return View(Models.ComicBookManager.GetComicBooks().Find(p => p.ComicBookId == comicBook.ComicBookId));
         }
     }
 }
